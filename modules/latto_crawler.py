@@ -35,8 +35,8 @@ def grab_data(args):
     _x_path = '//*[@id="{}_{}"]/option'.format(component_prefix, "dropMonth")
     month_list = [m.text for m in web_html.xpath(_x_path)]
     year_shift = len(year_list) - 3
-    #driver = webdriver.Chrome()
-    driver = webdriver.Chrome("./chromedriver")
+    driver = webdriver.Chrome()
+    #driver = webdriver.Chrome("./chromedriver")
     driver.get(url)
     driver.find_element_by_id("{}_{}".format(component_prefix, "radYM")).click()
     time.sleep(1)

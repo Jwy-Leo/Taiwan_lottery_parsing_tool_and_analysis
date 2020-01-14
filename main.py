@@ -91,7 +91,8 @@ def grab_data(args):
     month_list = [m.text for m in web_html.xpath('//*[@id="Lotto649Control_history_dropMonth"]/option')]
     year_shift = len(year_list) - 3
 
-    driver = webdriver.Chrome("./chromedriver")
+    #driver = webdriver.Chrome("./chromedriver")
+    driver = webdriver.Chrome()
 
     driver.get(url)
 
