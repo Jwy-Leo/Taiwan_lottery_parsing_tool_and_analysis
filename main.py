@@ -6,6 +6,7 @@ import time
 import pandas as pd
 from selenium import webdriver
 from lxml import html
+
 output_filename = 'result.csv'
 MODE = ["big lattor"]
 MODE_MAX_number = {"big lattor":49}
@@ -29,8 +30,7 @@ def main(args):
     if args.grab:
         grab_data(args)
     statastic_plot(args)
-    output_filename, args.period
-    pass
+
 def statastic_plot(args):
     csv_path, period, max_bin = args.output_filepath, args.period, MODE_MAX_number[MODE[args.mode]]
 
@@ -91,7 +91,7 @@ def grab_data(args):
     month_list = [m.text for m in web_html.xpath('//*[@id="Lotto649Control_history_dropMonth"]/option')]
     year_shift = len(year_list) - 3
 
-    driver = webdriver.Chrome()
+    driver = webdriver.Chrome("./chromedriver")
 
     driver.get(url)
 
@@ -120,6 +120,7 @@ def grab_data(args):
                 if len(section) == 0:
                     break
 
+                #this_date = web_html.xpath('//*[@id="Lotto649Control_history_dlQuery_L649_DDate_'+str(section_i)+'"]')[0].text
                 this_date = web_html.xpath('//*[@id="Lotto649Control_history_dlQuery_L649_DDate_'+str(section_i)+'"]')[0].text
                 print('%s'%(section_i))
                 output_list['date'].append(this_date)
@@ -142,7 +143,6 @@ def grab_data(args):
     for k in output_list.keys():
         output[k] = output_list[k]
     output = output.sort_values(ascending=False, by=["date"])
-    import pdb;pdb.set_trace()
     output.to_csv(output_filename)
 
     
