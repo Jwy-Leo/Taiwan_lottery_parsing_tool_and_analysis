@@ -1,15 +1,11 @@
 import os
 import numpy as np
 import matplotlib.pyplot as plt
-MODE = ["big_latto", "super_latto"]
-MODE_MAX_number = {
-    "big_latto": 49,
-    "super_latto": 38
-}
 def statastic_plot(args):
     # Initial meta information
-    _mode_string = MODE[args.mode]
-    csv_path, period, max_bin = args.output_filepath, args.period, MODE_MAX_number[_mode_string]
+    mode_index = args['control']['mode']
+    _mode_string = args['Lottery_categories'][mode_index]
+    csv_path, period, max_bin = args['control']['output_filepath'], args['control']['period'], args[_mode_string]["Lottery_maximum_number"]
     csv_path = os.path.join("database", "{}_{}".format(_mode_string, csv_path))
     with open(csv_path, "r", encoding='utf-8') as F:
         lines = F.readlines()
@@ -32,16 +28,13 @@ def statastic_plot(args):
     plt.figure(0)
     plt.hist(number_l.reshape(-1), bins=max_bin, range=(1,max_bin+1))
     plt.title("Normal number distribution")
-    #plt.xlim(0, max_bin+1)
     plt.figure(1)
     plt.hist(spec_l.reshape(-1), bins=max_bin, range=(1,max_bin+1))
     plt.title("Special number distribution")
-    #plt.xlim(0, max_bin+1)
     plt.figure(2)
     totally_number = np.concatenate([number_l.reshape(-1), spec_l.reshape(-1)], axis=0)
     plt.hist(totally_number, bins=max_bin, range=(1,max_bin+1))
     plt.title("Totally number distribution")
-    #plt.xlim(0, max_bin+1)
     plt.show()
 
 def decode_csv_info(args, l_block):

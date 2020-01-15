@@ -1,0 +1,13 @@
+Lottery_categories:
+    - "big_lottery"
+    - "super_lottery"
+big_lottery:
+    Lottery_maximum_number: 49
+    Parsing_URL_SET: "http://www.taiwanlottery.com.tw/Lotto/Lotto649/history.aspx"
+    Parsing_switch_page_component: "Lotto649Control_history"
+    Parsing_date_component: "dlQuery_L649_DDate"
+super_lottery:
+    Lottery_maximum_number: 38
+    Parsing_URL_SET: "https://www.taiwanlottery.com.tw/lotto/superlotto638/history.aspx"
+    Parsing_switch_page_component: "SuperLotto638Control_history1"
+    Parsing_date_component: "dlQuery_Date"
