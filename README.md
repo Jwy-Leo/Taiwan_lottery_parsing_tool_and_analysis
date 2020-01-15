@@ -1,2 +1,2 @@
-# lattor_parsing_tool_and_analysis
-lattor_parsing_tool_and_analysis
+# Taiwan_lottery_parsing_tool_and_analysis
+Taiwan_lottery_parsing_tool_and_analysis
